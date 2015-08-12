@@ -58,9 +58,9 @@ This function is not finished. But it can work now. "
 
 
 ; Global Variable. For count how many shells opened
-(setq shell-window-numbers 0)
+(defvar shell-window-numbers 0)
 ; The head of the list is the right position
-(setq shells-repository '(0))
+(defvar shells-repository '(0))
 
 (defun shells ()
   "Open multiple shells with different name in different buffers.
@@ -173,10 +173,6 @@ to shell and should be add to `shell-mode-hook'. If not, nothing will be done."
     (other-window -1)))
 
 (defun load-config ()
-  "load .emacs. The global variables will be saved and restore."
+  "load .emacs. The global variables will not be changed."
   (interactive)
-  (let ((global-variables-tmp `((shell-window-numbers . ,shell-window-numbers)
-				(shells-repository . ,shells-repository))))
-    (load-file "/home/navy/.emacs")
-    (dolist (tmp global-variables-tmp)
-      (set (car tmp) (cdr tmp)))))
+    (load-file "/home/navy/.emacs"))

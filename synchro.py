@@ -1,7 +1,7 @@
 #!/usr/bin/python
 '''
 This script is to synchronize the files in *files1* and *filess*.
-This script is to be improved
+You can ignore this script. This script is to be improved.
 '''
 import shutil
 import os
