@@ -60,7 +60,7 @@
 (add-hook 'python-mode-hook
 	  (lambda ()
 	    (progn
-	      (define-key python-mode-map (kbd "C-c i") 'interpret-python)
+	      (define-key python-mode-map (kbd "<f5>") 'interpret-python)
 	      (setq compile-command "python "))))
 
 ;; shell-mode
@@ -86,7 +86,7 @@
 (global-set-key (kbd "C-c m") 'rectangle-mark-mode); rectangle
 
 
-
+(server-start)
 
 
 
