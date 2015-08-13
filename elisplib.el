@@ -56,11 +56,12 @@ This function is not finished. But it can work now. "
 	(find-file-read-only (car (split-string (buffer-line-substring) ",")))
 	(goto-line (string-to-number line-num)))))   ; Got to the line.
 
-
-; Global Variable. For count how many shells opened
-(defvar shell-window-numbers 0)
-; The head of the list is the right position
-(defvar shells-repository '(0))
+(defvar shell-window-numbers 0
+  "Record how many shells is opened by `shells'")
+(defvar shells-repository '(0)
+  "This is a list to record the names of buffers opened by `shells-loop-add'. The first car
+of `shells-repository' is a int which point to the position of `shells-repository'.
+The buffer name of this position will be visit by `shells-loop'")
 
 (defun shells ()
   "Open multiple shells with different name in different buffers.
