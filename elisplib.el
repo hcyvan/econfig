@@ -159,19 +159,33 @@ to shell and should be add to `shell-mode-hook'. If not, nothing will be done."
                               (when (string-match "finished" change)
                                 (kill-buffer (process-buffer proc))))))))
 
+(defvar interpret-python-order 0
+  "Record the times of `interpret-python'")
 (defun interpret-python ()
   "Interpreting the script by python"
   (interactive)
-  (let ((buffer-name (buffer-file-name)))
-    (call-process "python"
-		  nil
-		  (or (get-buffer "*python*")
-		      (generate-new-buffer "*python*"))
-		  nil
-		  buffer-name)
-    (switch-to-buffer-other-window "*python*" t)
+  (let* ((script-name (buffer-name))
+	 (display-buffer-name "*python*")
+	 boader)
+    (setq boader (make-string 40 ?-))
+    (if (get-buffer display-buffer-name)
+	;; display-buffer-name is exist
+	(progn
+	  (setq interpret-python-order (1+ interpret-python-order))
+	  (with-current-buffer display-buffer-name
+	    (goto-char (point-min))
+	    (insert (format "<%d> %s\n" interpret-python-order boader))))
+      ;; display-buffer-name is not exist
+      (generate-new-buffer display-buffer-name)
+      (setq interpret-python-order 0)
+      (with-current-buffer display-buffer-name
+	(goto-char (point-min))
+	(insert (format "<0> %s\n" boader))))
+    ;; call "python script-name"
+    (call-process "python" nil display-buffer-name nil script-name)
+    (switch-to-buffer-other-window display-buffer-name t)
     (other-window -1)))
-
+    
 (defun load-config ()
   "load .emacs. The global variables will not be changed."
   (interactive)
