@@ -13,7 +13,7 @@ files2=[r'%s/.emacs.d/elisplib.el'%HOME,
         r'%s/.emacs'%HOME]
 
 def fail(message):
-    print message
+    print(message)
     exit()
 
 def copyFiles(source, dest):
@@ -27,6 +27,6 @@ def copyFiles(source, dest):
         if not os.path.isfile(dfile):
             fail("No file %s"%dfile)
         shutil.copy(sfile, dfile)
-        print "... copy: %s ---->  %s"%(sfile, dfile)
+        print("... copy: %s ---->  %s"%(sfile, dfile))
 
 copyFiles(files2, files1)
