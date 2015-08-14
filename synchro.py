@@ -1,49 +1,51 @@
 #!/usr/bin/python
 '''
-This script is to synchronize the files in *files1* and *filess*.
-You can ignore this script. This script is to be improved.
+This script is to Instal and manage the files in this repository.
+Use -h or --help for usage.
 '''
 import shutil
 import os
 import argparse
 
-HOME=r'/home/navy'
+HOME=os.getenv('HOME')
+ELIB=HOME+'/.emacs.d'
 
-files1=['elisplib.el','emacs.el']
-files2=[r'%s/.emacs.d/elisplib.el'%HOME,
-        r'%s/.emacs'%HOME]
+##         SOURCE          DEST
+files=[('elisplib.el', ELIB+"/elisplib.el"),
+       ('emacs.el',    HOME+"/.emacs")]
 
-def fail(message):
-    print(message)
-    exit()
+def update(files):
+    for pairs in files:
+        shutil.copy(pairs[1],pairs[0])
+        print('...copy %s -----> %s'%(pairs[1],pairs[0]))
 
-def copyFiles(source, dest):
-    if len(source)!=len(dest):
-        fail("The files number in source and dest are not equle.")
-    for i in range(len(source)):
-        sfile=source[i]
-        dfile=dest[i]
-        if not os.path.isfile(sfile):
-            fail("No file %s"%sfile)
-        if not os.path.isfile(dfile):
-            fail("No file %s"%dfile)
-        shutil.copy(sfile, dfile)
-        print("... copy: %s ---->  %s"%(sfile, dfile))
+def install(files):
+    for pairs in files:
+        if not os.path.exists(ELIB):
+            os.makedirs(ELIB)
+        shutil.copy(pairs[0],pairs[1])
+        print('...copy %s -----> %s'%(pairs[0],pairs[1]))
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description="Install and config this repository.")
     group = parser.add_mutually_exclusive_group()
 
-    update_help="update the scripts in this repository if the installed scripts changed."
+    update_help="update the scripts in this repository \
+    if the installed scripts changed."
     install_help="install the scripts in this repository."
-    group.add_argument("-u", "--update", help=update_help, action="store_true")
-    group.add_argument("-i", "--install", help=install_help, action="store_true")
+    
+    group.add_argument("-u", "--update",
+                       help=update_help, action="store_true")
+    group.add_argument("-i", "--install",
+                       help=install_help, action="store_true")
     args = parser.parse_args()
     
     if args.update:
         print("...update:")
-        copyFiles(files2,files1)
+        update(files)
     elif args.install:
         print("...install:")
-        copyFiles(files1, files2)
+        install(files)
+    else:
+        print("Nothing happened: -h or --help to see useage.")
