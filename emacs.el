@@ -1,4 +1,4 @@
-
+
 ;;****************** Global Set *******************
 
 ;(tool-bar-mode 0); emacs X
@@ -23,6 +23,10 @@
 ;; (switch-to-buffer (get-buffer-create (shell)))
 ;; (setq debug-on-error t)
 
+;; Uncomment the next line to enable use emacs SC mode
+;; You'd better to add " alias emacs='emacsclient -t -a emacs " to ~/.bashrc
+(server-start)
+
 ;;******************* Plug-in ********************
 
 (add-to-list 'load-path "~/.emacs.d/plugin/")
@@ -39,7 +43,7 @@
 ;; (color-theme-deep-blue)      ;选择主题
 (color-theme-calm-forest)
 ;; (color-theme-taming-mr-arneson)
-
+
 ;;******************* Build-in *********************
 ;; c-mode
 (c-add-style "myC"
@@ -64,31 +68,23 @@
 	      (setq compile-command "python "))))
 
 ;; shell-mode
-; 使 shell 的色彩信息能被 Emacs 解析
+;; 使 shell 的色彩信息能被 Emacs 解析
 (autoload 'ansi-color-for-comint-mode-on "ansi-color" nil t)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on t)
-; 向 hook 中添加哨兵
+;; 向 hook 中添加哨兵
 (add-hook 'shell-mode-hook
 	  '(lambda ()
 	     (progn
 	       (kill-buffer-when-shell-exit))))
-
+
 ;;****************** Key Bind ***********************
 ;; python-mode:    C-c i    interpret-python
 
-(global-set-key (kbd "C--") 'undo); undo
-(global-set-key (kbd "C-c C-f") 'find-name-dired); "find ./ -name"
-(global-set-key (kbd "<f6>") 'compile); compile
-(global-set-key (kbd "<f5>") 'load-config); load-config
-(global-set-key (kbd "<f12>") 'shell); shell
-(global-set-key (kbd "<f10>") 'shells-loop-add); shells-loop-add
-(global-set-key (kbd "<f9>") 'shells-switch); shells-switch
-(global-set-key (kbd "C-c m") 'rectangle-mark-mode); rectangle
-
-
-(server-start)
-
-
-
-
-
+(global-set-key (kbd "<f5>") 'load-config)           ; load-config
+(global-set-key (kbd "<f6>") 'compile)               ; compile
+(global-set-key (kbd "<f9>") 'shells-switch)         ; shells-switch
+(global-set-key (kbd "<f10>") 'shells-loop-add)      ; shells-loop-add
+(global-set-key (kbd "<f12>") 'shell)                ; shell
+(global-set-key (kbd "C-c C-f") 'find-name-dired)      ; "find ./ -name"
+(global-set-key (kbd "C-c f") 'ffap)               ; ffap
+(global-set-key (kbd "C--") 'undo)                   ; undo
