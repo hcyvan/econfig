@@ -183,7 +183,7 @@ to shell and should be add to `shell-mode-hook'. If not, nothing will be done."
 	(goto-char (point-min))
 	(insert (format "<0> %s\n" boader))))
     ;; call "python script-name"
-    (call-process "python" nil display-buffer-name nil script-name)
+    (call-process "python3" nil display-buffer-name nil script-name)
     (switch-to-buffer-other-window display-buffer-name t)
     (other-window -1)))
     
