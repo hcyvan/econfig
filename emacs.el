@@ -1,6 +1,7 @@
 
 ;;****************** Global Set *******************
 
+(setq lexical-binding t) ; lexical scoping
 ;(tool-bar-mode 0); emacs X
 (menu-bar-mode 0); emacs and emacs X
 ;(scroll-bar-mode 0);emacs X
