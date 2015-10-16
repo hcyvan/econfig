@@ -39,13 +39,21 @@
 ; 如下命令。如果没有安装color-theme插件，可将下面的代码注释
 ; M-x color-theme-select: Select your comfrotable color theme.
 (add-to-list 'load-path "~/.emacs.d/plugin/color-theme-6.6.0")
-(require 'color-theme) 	;载入color-theme插件
-(color-theme-initialize)	;必要初始化
+;(require 'color-theme) 	;载入color-theme插件
+;(color-theme-initialize)	;必要初始化
 ;; (color-theme-deep-blue)      ;选择主题
-(color-theme-calm-forest)
+;(color-theme-calm-forest)
 ;; (color-theme-taming-mr-arneson)
 
 ;;******************* Build-in *********************
+;; org-mode
+;; Change the external applications for opening `file:path' items in a
+;; org-mode document.
+(add-hook 'org-mode-hook
+	  (lambda ()
+	    (add-to-list 'org-file-apps '("\\.jpg\\'" . "ristretto %s"))
+	    (add-to-list 'org-file-apps '("\\.png\\'" . "ristretto %s"))
+	    (add-to-list 'org-file-apps '("\\.tif\\'" . "ristretto %s"))))
 ;; c-mode
 (c-add-style "myC"
 	     '("k&r"
@@ -89,3 +97,16 @@
 (global-set-key (kbd "C-c C-f") 'find-name-dired)      ; "find ./ -name"
 (global-set-key (kbd "C-c f") 'ffap)               ; ffap
 (global-set-key (kbd "C--") 'undo)                   ; undo
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values (quote ((c-indent-level . 4))))
+ '(send-mail-function nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
