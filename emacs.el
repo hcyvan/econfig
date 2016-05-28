@@ -29,11 +29,13 @@
 (server-start)
 
 ;;******************* Plug-in ********************
-
 (add-to-list 'load-path "~/.emacs.d/plugin/")
 ; markdown-mode
 (autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+; python-mode
+; copy python-mode.el to ~/.emacs.d/plugin
+(require 'python-mode)
 ; color-theme
 ; 使用说明：下载后解压缩至~/.emacs.d/plugin/目录下，然后执行
 ; 如下命令。如果没有安装color-theme插件，可将下面的代码注释
@@ -110,3 +112,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
