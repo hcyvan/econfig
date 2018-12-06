@@ -1,0 +1,11 @@
+C-x C-f: find/create file
+
+** Buffer
+C-x C-b: list all buffers
+C-x b:
+
+** shell
+M-x shell: open shell mode
+
+** window
+C-x 0: next window
