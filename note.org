@@ -1,11 +1,48 @@
-C-x C-f: find/create file
+** Macro
+C-x (: kmacro-start-macro
+C-x ): kmacro-end-macro
+C-x e: kmacro-end-and-call-macro
+C-u n C-x e: repet the macro for n times
+
+** File
+C-x C-f: create file/open file
+C-x C-f: open file[readonly]
+C-x C-q: change to readonly mode
+
+** Edit
+C-/: undo
+M-<: file begin
+M->: file end
+C-e: line end
+C-e RET: new line
+C-@: start select regin
+C-w: cut
+M-w: copy
+C-y: paste
 
 ** Buffer
 C-x C-b: list all buffers
 C-x b:
+C-x k <buffer> RET: kill buffer
 
 ** shell
 M-x shell: open shell mode
 
 ** window
-C-x 0: next window
+C-x o: next window
+C-x 0: close current window
+C-x 1: close other window
+
+** help
+C-h ?: see help document
+
+** org-mode
+S-Tab: expand/collapse all item
+Tab: expand/collapse one item
+C-c C-s: add scheduled
+C-c C-d: add deadline
+C-c C-t: switch between todo and done
+
+
+** Other
+C-g: stop
